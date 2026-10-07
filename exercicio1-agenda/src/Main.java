@@ -52,8 +52,13 @@ public class Main {
                         String parentesco = scanner.nextLine();
 
                         ContatoPessoal contato =
-                                new ContatoPessoal(nome, email, telefone,
-                                        dataAniversario, parentesco);
+                                new ContatoPessoal(
+                                        nome,
+                                        email,
+                                        telefone,
+                                        dataAniversario,
+                                        parentesco
+                                );
 
                         agenda.adicionarContato(contato);
 
@@ -68,8 +73,13 @@ public class Main {
                         String cargo = scanner.nextLine();
 
                         ContatoProfissional contato =
-                                new ContatoProfissional(nome, email, telefone,
-                                        empresa, cargo);
+                                new ContatoProfissional(
+                                        nome,
+                                        email,
+                                        telefone,
+                                        empresa,
+                                        cargo
+                                );
 
                         agenda.adicionarContato(contato);
 
@@ -77,21 +87,38 @@ public class Main {
 
                     } else if (tipo == 3) {
 
-                        System.out.print("Grau de prioridade (1 a 5): ");
-                        int prioridade = Integer.parseInt(scanner.nextLine());
+                        int prioridade;
+
+                        do {
+                            System.out.print("Grau de prioridade (1 a 5): ");
+                            prioridade = Integer.parseInt(scanner.nextLine());
+
+                            if (prioridade < 1 || prioridade > 5) {
+                                System.out.println(
+                                        "Valor invalido. Digite um numero de 1 a 5."
+                                );
+                            }
+
+                        } while (prioridade < 1 || prioridade > 5);
 
                         System.out.print("Observacao: ");
                         String observacao = scanner.nextLine();
 
                         ContatoEmergencia contato =
-                                new ContatoEmergencia(nome, email, telefone,
-                                        prioridade, observacao);
+                                new ContatoEmergencia(
+                                        nome,
+                                        email,
+                                        telefone,
+                                        prioridade,
+                                        observacao
+                                );
 
                         agenda.adicionarContato(contato);
 
                         System.out.println("Contato adicionado com sucesso.");
 
                     } else {
+
                         System.out.println("Tipo invalido.");
                     }
 
@@ -103,8 +130,11 @@ public class Main {
                     String nomeRemover = scanner.nextLine();
 
                     if (agenda.removerContato(nomeRemover)) {
+
                         System.out.println("Contato removido com sucesso.");
+
                     } else {
+
                         System.out.println("Contato nao encontrado.");
                     }
 
@@ -115,11 +145,16 @@ public class Main {
                     System.out.print("Nome: ");
                     String nomeBusca = scanner.nextLine();
 
-                    Contato contatoNome = agenda.buscarPorNome(nomeBusca);
+                    Contato contatoNome =
+                            agenda.buscarPorNome(nomeBusca);
 
                     if (contatoNome != null) {
+
+                        System.out.println();
                         contatoNome.exibirDados();
+
                     } else {
+
                         System.out.println("Contato nao encontrado.");
                     }
 
@@ -130,11 +165,16 @@ public class Main {
                     System.out.print("Email: ");
                     String emailBusca = scanner.nextLine();
 
-                    Contato contatoEmail = agenda.buscarPorEmail(emailBusca);
+                    Contato contatoEmail =
+                            agenda.buscarPorEmail(emailBusca);
 
                     if (contatoEmail != null) {
+
+                        System.out.println();
                         contatoEmail.exibirDados();
+
                     } else {
+
                         System.out.println("Contato nao encontrado.");
                     }
 
@@ -149,8 +189,12 @@ public class Main {
                             agenda.buscarPorTelefone(telefoneBusca);
 
                     if (contatoTelefone != null) {
+
+                        System.out.println();
                         contatoTelefone.exibirDados();
+
                     } else {
+
                         System.out.println("Contato nao encontrado.");
                     }
 
